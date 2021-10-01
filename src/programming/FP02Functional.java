@@ -1,7 +1,6 @@
 package programming;
 
-import com.sun.tools.javac.util.List;
-
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -11,7 +10,7 @@ public class FP02Functional {
         java.util.List<Integer> doubledNums = doubleList(nums);
 
         int sum = addListFunctional(nums);
-        System.out.println("總和：" + sum);
+        System.out.println("蝮賢���" + sum);
 
         System.out.println(sumOfSquaredNumOfList(nums));
         System.out.println("======================");
@@ -31,7 +30,7 @@ public class FP02Functional {
     }
 
     private static int sum(int aggregate, int nextNumber) {
-        System.out.println("累積:" + aggregate + " / 下一個數:" + nextNumber);
+        System.out.println("蝝舐��:" + aggregate + " / 銝��:" + nextNumber);
         return aggregate + nextNumber;
     }
 

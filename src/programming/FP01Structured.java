@@ -1,6 +1,6 @@
 package programming;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 public class FP01Structured {
     public static void main(String[] args) {
