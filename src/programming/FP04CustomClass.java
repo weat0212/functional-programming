@@ -1,7 +1,10 @@
 package programming;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Course {
     private String name;
@@ -83,5 +86,37 @@ public class FP04CustomClass {
         System.out.println(courses.stream().noneMatch(reviewScoreGreaterThan90Predicate));
         System.out.println(courses.stream().anyMatch(reviewScoreLessThan90Predicate));
 
+        // Sorting
+        Comparator<? super Course> comparingByNoOfStudentsAsc = Comparator.comparing(Course::getNoOfStudents);
+        Comparator<? super Course> comparingByNoOfStudentsDesc = Comparator.comparing(Course::getNoOfStudents).reversed();
+
+        System.out.println(courses.stream().sorted(comparingByNoOfStudentsAsc).collect(Collectors.toList()));
+        System.out.println(courses.stream().sorted(comparingByNoOfStudentsDesc).collect(Collectors.toList()));
+
+        // More Conditions
+        Comparator<? super Course> comparingByNoOfStudentsAndNoOfReviews =
+                Comparator.comparing(Course::getNoOfStudents).thenComparing(Course::getReviewScore);
+        System.out.println(courses.stream().sorted(comparingByNoOfStudentsAndNoOfReviews).collect(Collectors.toList()));
+
+        // Limit
+        System.out.println(
+                courses.stream().sorted(comparingByNoOfStudentsAndNoOfReviews)
+                        .limit(1).collect(Collectors.toList()));
+
+        // Skip
+        System.out.println(
+                courses.stream().sorted(comparingByNoOfStudentsAndNoOfReviews)
+                        .skip(5).collect(Collectors.toList()));
+
+        // takeWhile
+        System.out.println("************************");
+        System.out.println(
+            courses.stream().takeWhile(course -> course.getReviewScore() >= 80).collect(Collectors.toList()));
+
+        System.out.println(
+            courses.stream().dropWhile(course -> course.getReviewScore() >= 80).collect(Collectors.toList()));
+
+        Stream.of("a","b","c","","e","f","","g","h").dropWhile(s-> !s.isEmpty())
+                .forEach(System.out::print);
     }
 }
